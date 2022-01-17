@@ -14,7 +14,8 @@ const scene = new THREE.Scene();
    , camera won't be registered. 
  - Near Clipping Plane: Like near clipping but anything further. 
 */
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.6, )
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.6, );
+camera.position.z = 5;
 
 // Here create a WebGL renderer object to render objects. 
 const renderer = new THREE.WebGL1Renderer({antialias: true});
@@ -39,4 +40,12 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix(); // apply the changes.
 });
+
+// create a box to display 
+
+const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
+const boxMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff});
+const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial)
+boxMesh.rotation.set(40, 0, 40);
+scene.add(boxMesh);
 
